@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Manju ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to top, #ff9a9e, #fad0c4);
+  height: 100vh;
+}
+
+/* Main Text */
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 65px;
+  margin-top: 50px;
+  color: #d10068;
+}
+
+h2 {
+  font-size: 28px;
+  color: #8b0055;
+}
+
+/* Buttons */
+button {
+  padding: 15px 35px;
+  font-size: 20px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#yes {
+  background: #ff3399;
+  color: white;
+  margin-right: 20px;
+}
+
+#no {
+  background: #660033;
+  color: white;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Tree Image */
+.tree {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  z-index: 1;
+}
+
+/* Floating Flowers */
+.flower {
+  position: absolute;
+  font-size: 30px;
+  animation: float 10s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+/* Butterflies */
+.butterfly {
+  position: absolute;
+  font-size: 35px;
+  animation: fly 12s linear infinite;
+}
+
+@keyframes fly {
+  0% { transform: translate(0, 100vh) rotate(0deg); opacity: 1; }
+  25% { transform: translate(50px, 75vh) rotate(20deg); }
+  50% { transform: translate(-30px, 50vh) rotate(-10deg); }
+  75% { transform: translate(70px, 25vh) rotate(15deg); }
+  100% { transform: translate(200px, -10vh) rotate(0deg); opacity: 0; }
+}
+
+/* Fairy Lights */
+.light {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: gold;
+  border-radius: 50%;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { opacity: 0.3; }
+  to { opacity: 1; box-shadow: 0 0 10px gold; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Hey Manju 💖</h1>
+<h2>Will you be my Friendship Valentine? 🌸</h2>
+
+<button id="yes" onclick="celebrate()">YES 💕</button>
+<button id="no" onmouseover="moveButton()">NO 😜</button>
+
+<img src="https://pngimg.com/uploads/tree/tree_PNG92714.png" class="tree">
+
+<!-- Background Song -->
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Play music on first click (required for mobile autoplay restrictions)
+document.body.addEventListener("click", function() {
+  document.getElementById("bgMusic").play();
+});
+
+// Smooth moving NO button
+function moveButton() {
+  const btn = document.getElementById("no");
+  const newTop = Math.random() * (window.innerHeight - btn.offsetHeight);
+  const newLeft = Math.random() * (window.innerWidth - btn.offsetWidth);
+  btn.style.transition = "top 0.3s ease, left 0.3s ease";
+  btn.style.top = newTop + "px";
+  btn.style.left = newLeft + "px";
+}
+
+// Floating flowers
+setInterval(() => {
+  let flower = document.createElement("div");
+  flower.className = "flower";
+  flower.innerHTML = ["🌸","🌺","🌷","🌼","💐"][Math.floor(Math.random()*5)];
+  flower.style.left = Math.random() * 100 + "vw";
+  flower.style.fontSize = (20 + Math.random()*30) + "px";
+  document.body.appendChild(flower);
+
+  setTimeout(() => {
+    flower.remove();
+  }, 10000);
+}, 500);
+
+// Butterflies
+setInterval(() => {
+  let butterfly = document.createElement("div");
+  butterfly.className = "butterfly";
+  butterfly.innerHTML = "🦋";
+  butterfly.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(butterfly);
+
+  setTimeout(() => {
+    butterfly.remove();
+  }, 12000);
+}, 1500);
+
+// Fairy lights on tree
+for (let i = 0; i < 40; i++) {
+  let light = document.createElement("div");
+  light.className = "light";
+  light.style.left = (40 + Math.random()*20) + "vw";
+  light.style.top = (50 + Math.random()*20) + "vh";
+  document.body.appendChild(light);
+}
+
+// Celebration on YES click
+function celebrate() {
+  for(let i=0; i<100; i++){
+    const confetti = document.createElement("div");
+    confetti.innerHTML = "🎉💖🌸";
+    confetti.style.position = "absolute";
+    confetti.style.left = Math.random() * window.innerWidth + "px";
+    confetti.style.top = Math.random() * window.innerHeight + "px";
+    confetti.style.fontSize = (Math.random()*30 + 20) + "px";
+    document.body.appendChild(confetti);
+    setTimeout(()=> confetti.remove(), 4000);
+  }
+  alert("Our friendship blooms forever! 🌸💖✨");
+}
+</script>
+
+</body>
+</html>

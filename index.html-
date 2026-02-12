@@ -1,196 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>For Manju ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Manju ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #ffebf0; /* Soft pink background */
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300&display=swap" rel="stylesheet">
+        /* Moving Tree - Positioned at the bottom so it doesn't block buttons */
+        .tree {
+            position: absolute;
+            bottom: -20px;
+            width: 350px;
+            z-index: 1; /* Behind the content */
+            animation: sway 5s infinite ease-in-out;
+        }
 
-<style>
-body {
-  margin: 0;
-  overflow: hidden;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to top, #ff9a9e, #fad0c4);
-  height: 100vh;
-}
+        @keyframes sway {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
 
-/* Main Text */
-h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 65px;
-  margin-top: 50px;
-  color: #d10068;
-}
+        /* Butterflies flying around */
+        .butterfly {
+            position: absolute;
+            width: 30px;
+            z-index: 2;
+            animation: fly 10s infinite linear;
+        }
 
-h2 {
-  font-size: 28px;
-  color: #8b0055;
-}
+        @keyframes fly {
+            0% { left: -50px; top: 80%; transform: rotate(0deg); }
+            50% { left: 50%; top: 20%; transform: rotate(20deg); }
+            100% { left: 110%; top: 50%; transform: rotate(-20deg); }
+        }
 
-/* Buttons */
-button {
-  padding: 15px 35px;
-  font-size: 20px;
-  border: none;
-  border-radius: 40px;
-  cursor: pointer;
-  margin-top: 20px;
-}
+        /* Main Card */
+        .container {
+            position: relative;
+            z-index: 10; /* Always in front of the tree */
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 4px solid #ff4d6d;
+            max-width: 90%;
+        }
 
-#yes {
-  background: #ff3399;
-  color: white;
-  margin-right: 20px;
-}
+        h1 { color: #d63384; margin-bottom: 20px; font-size: 2.2rem; }
 
-#no {
-  background: #660033;
-  color: white;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            min-height: 60px;
+        }
 
-/* Tree Image */
-.tree {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 500px;
-  z-index: 1;
-}
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-/* Floating Flowers */
-.flower {
-  position: absolute;
-  font-size: 30px;
-  animation: float 10s linear infinite;
-}
+        #yesBtn { background: #ff4d6d; color: white; }
+        
+        #noBtn { 
+            background: #888; 
+            color: white; 
+            position: absolute; /* Allows it to jump everywhere */
+            z-index: 11; /* In front of everything else */
+        }
 
-@keyframes float {
-  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
-}
-
-/* Butterflies */
-.butterfly {
-  position: absolute;
-  font-size: 35px;
-  animation: fly 12s linear infinite;
-}
-
-@keyframes fly {
-  0% { transform: translate(0, 100vh) rotate(0deg); opacity: 1; }
-  25% { transform: translate(50px, 75vh) rotate(20deg); }
-  50% { transform: translate(-30px, 50vh) rotate(-10deg); }
-  75% { transform: translate(70px, 25vh) rotate(15deg); }
-  100% { transform: translate(200px, -10vh) rotate(0deg); opacity: 0; }
-}
-
-/* Fairy Lights */
-.light {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: gold;
-  border-radius: 50%;
-  animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-  from { opacity: 0.3; }
-  to { opacity: 1; box-shadow: 0 0 10px gold; }
-}
-</style>
+        #successMessage { display: none; color: #d63384; font-size: 1.8rem; }
+    </style>
 </head>
-
 <body>
 
-<h1>Hey Manju 💖</h1>
-<h2>Will you be my Friendship Valentine? 🌸</h2>
+    <img src="https://img.freepik.com/free-vector/spring-floral-tree-background_23-2148415432.jpg" class="tree" alt="Flowering Tree">
 
-<button id="yes" onclick="celebrate()">YES 💕</button>
-<button id="no" onmouseover="moveButton()">NO 😜</button>
+    <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1017.png" class="butterfly" style="animation-delay: 0s;">
+    <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1017.png" class="butterfly" style="animation-delay: 5s;">
 
-<img src="https://pngimg.com/uploads/tree/tree_PNG92714.png" class="tree">
+    <div class="container">
+        <div id="content">
+            <h1>Hey Manju! 👋<br>Will you be my<br>Friendship Valentine? 🌸</h1>
+            <div class="btn-group">
+                <button id="yesBtn">YES! 🥰</button>
+                <button id="noBtn">No 🥺</button>
+            </div>
+        </div>
+        <div id="successMessage">
+            Yayy! Best Friends Forever! 💖✨<br>
+            <i>"Kesariya tera ishq hai Piya..."</i> 🧡
+        </div>
+    </div>
 
-<!-- Background Song -->
-<audio id="bgMusic" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
+    <audio id="bgMusic" loop>
+        <source src="https://www.pagalworld.com.se/files/download/id/64630" type="audio/mpeg">
+    </audio>
 
-<script>
-// Play music on first click (required for mobile autoplay restrictions)
-document.body.addEventListener("click", function() {
-  document.getElementById("bgMusic").play();
-});
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const music = document.getElementById('bgMusic');
 
-// Smooth moving NO button
-function moveButton() {
-  const btn = document.getElementById("no");
-  const newTop = Math.random() * (window.innerHeight - btn.offsetHeight);
-  const newLeft = Math.random() * (window.innerWidth - btn.offsetWidth);
-  btn.style.transition = "top 0.3s ease, left 0.3s ease";
-  btn.style.top = newTop + "px";
-  btn.style.left = newLeft + "px";
-}
+        // Start music on first click
+        document.body.addEventListener('click', () => {
+            music.play().catch(e => console.log("Music ready"));
+        }, { once: true });
 
-// Floating flowers
-setInterval(() => {
-  let flower = document.createElement("div");
-  flower.className = "flower";
-  flower.innerHTML = ["🌸","🌺","🌷","🌼","💐"][Math.floor(Math.random()*5)];
-  flower.style.left = Math.random() * 100 + "vw";
-  flower.style.fontSize = (20 + Math.random()*30) + "px";
-  document.body.appendChild(flower);
+        // The Runaway No Button
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
 
-  setTimeout(() => {
-    flower.remove();
-  }, 10000);
-}, 500);
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', moveButton);
 
-// Butterflies
-setInterval(() => {
-  let butterfly = document.createElement("div");
-  butterfly.className = "butterfly";
-  butterfly.innerHTML = "🦋";
-  butterfly.style.left = Math.random() * 100 + "vw";
-  document.body.appendChild(butterfly);
-
-  setTimeout(() => {
-    butterfly.remove();
-  }, 12000);
-}, 1500);
-
-// Fairy lights on tree
-for (let i = 0; i < 40; i++) {
-  let light = document.createElement("div");
-  light.className = "light";
-  light.style.left = (40 + Math.random()*20) + "vw";
-  light.style.top = (50 + Math.random()*20) + "vh";
-  document.body.appendChild(light);
-}
-
-// Celebration on YES click
-function celebrate() {
-  for(let i=0; i<100; i++){
-    const confetti = document.createElement("div");
-    confetti.innerHTML = "🎉💖🌸";
-    confetti.style.position = "absolute";
-    confetti.style.left = Math.random() * window.innerWidth + "px";
-    confetti.style.top = Math.random() * window.innerHeight + "px";
-    confetti.style.fontSize = (Math.random()*30 + 20) + "px";
-    document.body.appendChild(confetti);
-    setTimeout(()=> confetti.remove(), 4000);
-  }
-  alert("Our friendship blooms forever! 🌸💖✨");
-}
-</script>
-
+        // Yes Button Action
+        yesBtn.addEventListener('click', () => {
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            document.body.style.background = "#ffccd5";
+        });
+    </script>
 </body>
 </html>
